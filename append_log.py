@@ -4,6 +4,7 @@ from pathlib import Path
 
 def append_line(dt_obj, line, n):
     pdt = datetime.date.today()
+
     lst = []
     path = Path('/home/gslab/log_files')
     for i in range(0, int(n)):
@@ -11,6 +12,9 @@ def append_line(dt_obj, line, n):
 
     for j in range(0, int(n)):
         if dt_obj == lst[j].day:
-            with open(path.joinpath(str(j)), 'a+') as f:
+            k = 'test.log.'
+            key = k + str(j)
+            with open(path.joinpath(key), 'a+') as f:
                 f.write(line)
                 f.close()
+

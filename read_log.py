@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 
 import remove_duplicate_line
@@ -11,7 +12,7 @@ if __name__ == '__main__':
     p = Path('/var/log')
     list_of_files = getListOfFiles(p)
     n = input("Enter number of days:")
-
+    os.mkdir('/home/gslab/log_files')
     for file_name in list_of_files:
         if file_name.endswith('.log'):
             FI = open(file_name, 'r')
@@ -24,3 +25,10 @@ if __name__ == '__main__':
     p2 = Path('/home/gslab/test')
     for file in os.listdir(p1):
         remove_duplicate_line.remove_duplicate(p1.joinpath(file), p2.joinpath(file))
+
+    dir_path = '/home/gslab/log_files'
+
+    try:
+        shutil.rmtree(dir_path)
+    except OSError as e:
+        print("Error: %s : %s" % (dir_path, e.strerror))
